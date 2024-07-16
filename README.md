@@ -17,6 +17,8 @@ If you think this work or our codes are useful for your research, please cite ou
 }
 ```
 
+## Usage
+
 ### Prerequisites
 To run this code, ensure you have the following packages installed:
 
@@ -48,8 +50,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 The implementation extends the functionality of the [Palette-Image-to-Image-Diffusion-Models](https://github.com/Janspiry/Palette-Image-to-Image-Diffusion-Models) GitHub repository. Thanks for their excellent works!
-
-
-
-git config --global user.name "Renyang Liu"
-git config --global user.email "ryliu68@outlook.com"
