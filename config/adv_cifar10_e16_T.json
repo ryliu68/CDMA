@@ -1,0 +1,73 @@
+{
+    "name": "cifar10_T", // experiments name
+    "gpu_ids": [
+        0
+    ], // gpu ids list, default is single 0
+    "seed": 0, // random seed, seed <0 represents randomization not used 
+    "finetune_norm": false, // find the parameters to optimize
+    "path": { //set every part file path
+        "base_dir": "experiments_adv_T", // base path for all log except resume_state
+        "code": "code", // code backup
+        "tb_logger": "tb_logger", // path of tensorboard logger
+        "results": "results",
+        "checkpoint": "checkpoint",
+        "resume_state": "checkpoint/diffusion/cifar10/targeted/e16/10100_Network.pth"
+    },
+    "model": { // networks/metrics/losses/optimizers/lr_schedulers is a list and model is a dict
+        "which_model": { // import designated  model(trainer) using arguments 
+            "name": [
+                "models.model",
+                "Palette"
+            ], // import Model() class / function(not recommend) from models.model.py (default is [models.model.py])
+            "args": {
+                "sample_num": 8, // process of each image
+                "task": "advsarial_example",
+                "ema_scheduler": {
+                    "ema_start": 1,
+                    "ema_iter": 1,
+                    "ema_decay": 0.9999
+                }
+            }
+        },
+        "which_networks": [ // import designated list of networks using arguments
+            {
+                "name": [
+                    "models.network",
+                    "Network"
+                ], // import Network() class / function(not recommend) from default file (default is [models/network.py]) 
+                "args": { // arguments to initialize network
+                    "init_type": "kaiming", // method can be [normal | xavier| xavier_uniform | kaiming | orthogonal], default is kaiming
+                    "module_name": "guided_diffusion", // sr3 | guided_diffusion
+                    "unet": {
+                        "in_channel": 6,
+                        "out_channel": 3,
+                        "inner_channel": 64,
+                        "channel_mults": [
+                            1,
+                            2,
+                            4,
+                            8
+                        ],
+                        "attn_res": [
+                            32,
+                            16,
+                            8
+                        ],
+                        "num_head_channels": 32,
+                        "res_blocks": 2,
+                        "dropout": 0.2,
+                        "image_size": 224
+                    },
+                    "beta_schedule": {                       
+                        "test": {
+                            "schedule": "linear", // linear or cosine
+                            "n_timestep": 100,
+                            "linear_start": 1e-4,
+                            "linear_end": 0.09
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}
