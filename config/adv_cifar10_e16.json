@@ -14,6 +14,53 @@
         // "resume_state": null // ex: 100, loading .state  and .pth from given epoch and iteration
     },
 
+    "datasets": { // train or test
+        "train": { 
+            "which_dataset": {  // import designated dataset using arguments 
+                "name": ["data.dataset", "Adv_PTH_Dataset"], // import Dataset() class / function(not recommend) from data.dataset.py (default is [data.dataset.py])
+                "args":{ // arguments to initialize dataset
+                    "data_root": "adv/cifar10/train_eps_16.pth",
+                    "data_flist": "dataset/stadv/train_list.txt",
+                    "data_len": -1
+                } 
+            },
+            "dataloader":{
+                "validation_split": 0.01, // percent or number 
+                "args":{ // arguments to initialize train_dataloader
+                    "batch_size": 224, // batch size in each gpu
+                    "num_workers": 20,
+                    "shuffle": true,
+                    "pin_memory": true,
+                    "drop_last": true
+                },
+                "val_args":{ // arguments to initialize valid_dataloader, will overwrite the parameters in train_dataloader
+                    "batch_size": 224, // batch size in each gpu
+                    "num_workers": 20,
+                    "shuffle": false,
+                    "pin_memory": true,
+                    "drop_last": false
+                }
+            }
+        },
+        "test": { 
+            "which_dataset": {
+                "name": "Adv_PTH_Dataset", // import Dataset() class / function(not recommend) from default file
+                "args":{
+                    "data_root": "adv/cifar10/train_eps_16.pth",
+                    "data_flist": "dataset/stadv/test_list.txt"
+                }
+            },
+            "dataloader":{
+                "args":{
+                    "batch_size": 16,
+                    "num_workers": 16,
+                    "pin_memory": true
+                }
+            }
+        }
+    },
+   
+
     "model": { // networks/metrics/losses/optimizers/lr_schedulers is a list and model is a dict
         "which_model": { // import designated  model(trainer) using arguments 
             "name": ["models.model", "Palette"], // import Model() class / function(not recommend) from models.model.py (default is [models.model.py])
