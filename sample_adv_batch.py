@@ -5,8 +5,8 @@ import core.praser as Praser
 import torch
 from models.network import Network
 
-from util import get_network,get_data
-from torchvision.utils import save_image
+from util import get_network
+from data.dataset import get_data
 import numpy as np
 import datetime
 

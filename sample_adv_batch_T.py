@@ -4,7 +4,8 @@ from tqdm import tqdm
 import core.praser as Praser
 import torch
 from models.network import Network
-from util import get_network,get_data
+from util import get_network
+from data.dataset import get_data
 from torchvision.utils import save_image
 import numpy as np
 import datetime

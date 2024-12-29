@@ -19,9 +19,7 @@
             "which_dataset": {  // import designated dataset using arguments 
                 "name": ["data.dataset", "Adv_PTH_Dataset"], // import Dataset() class / function(not recommend) from data.dataset.py (default is [data.dataset.py])
                 "args":{ // arguments to initialize dataset
-                    "data_root": "adv/cifar10/train_eps_16.pth",
-                    "data_flist": "dataset/stadv/train_list.txt",
-                    "data_len": -1
+                    "data_root": "data/adv/cifar10/FAKE_train_eps_16.pth"
                 } 
             },
             "dataloader":{
