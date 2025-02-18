@@ -1,6 +1,5 @@
 ## About
-This repository contains the official PyTorch implementation of our paper: [**"CDMA: Query-Efficient Black-box Attack to Deep Neural Networks with Conditional Diffusion Models"**](https://drive.google.com/file/d/13Xi-i2VPucNBkRB0DYF0fuFw3yaZLlPd/view?usp=sharing). 
-
+This repository contains the official PyTorch implementation of our paper: [**"CDMA: Query-Efficient Black-box Attack to Deep Neural Networks with Conditional Diffusion Models"**](https://ieeexplore.ieee.org/abstract/document/10504304/). 
 
 ## Usage
 
